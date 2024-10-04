@@ -19,8 +19,8 @@ export default function Sidebar() {
 
     return (
         <>
-        <div className=''>
-            <aside className={`${open ? 'w-50 mr-6' : 'w-12 mr-6'} transition-all duration-300 h-screen bg-purple-100`}>
+        <div className='sidebar'>
+            <aside className={`${open ? 'w-50 mr-6' : 'w-12 mr-6'} transition-all duration-300 h-full bg-purple-100 h-full`}>
                 <IoMenu className='w-10 h-8 ml-1 cursor-pointer text-purple-700' onClick={handleClick}/>
 
                 <ul className={`${!open && 'hidden'} mt-4 space-y-4 `}>

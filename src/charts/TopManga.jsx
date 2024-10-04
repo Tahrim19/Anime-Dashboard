@@ -17,7 +17,7 @@ export default function TopManga() {
       } catch (err) {
         console.log(err);
       }
-    }, 1000); // delay by 1 second
+    }, 2000); // delay by 2 second
   };
   
   useEffect(() => {
@@ -77,10 +77,9 @@ export default function TopManga() {
   return (
     <div>
       <h3 className='text-center'>Top Ranked Manga</h3> {/* Updated Chart Title */}
-      {/* Render the Pie chart only if data exists */}
-      <div style={{ width: '400px', height: '400px' }}> {/* Adjusted size for better layout */}
+      <div style={{ width: '450px', height: '450px' }}> {/* Adjusted size for better layout */}
         {popular.length > 0 ? (
-          <Pie data={prepareChartData()} options={options} width={400} height={400} />
+          <Pie data={prepareChartData()} options={options} width={450} height={450} />
         ) : (
           <p>Loading data...</p>
         )}

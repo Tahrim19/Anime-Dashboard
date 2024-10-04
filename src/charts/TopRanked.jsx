@@ -78,9 +78,9 @@ export default function TopRanked() {
     <div>
       <h3 className='text-center'>Top Ranked Anime</h3>
       {/* Render the Pie chart only if data exists */}
-      <div style={{ width: '400px', height: '400px' , marginLeft:'20px'}}>
+      <div style={{ width: '450px', height: '450px'}}>
         {topRanked.length > 0 ? (
-          <Pie data={prepareChartData()} options={options} width={400} height={400} marginLeft={20} />
+          <Pie data={prepareChartData()} options={options} width={450} height={450}/>
             ) : (
             <p>Loading data...</p>
         )}

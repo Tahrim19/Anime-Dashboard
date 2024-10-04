@@ -5,7 +5,9 @@ const requests = {
     // fetchAnimeDetail:`https://api.jikan.moe/v4/anime/${id}`
     fetchLongestRunning:`https://api.jikan.moe/v4/anime?sort=duration`,
     fetchManga:`https://api.jikan.moe/v4/top/manga`,
-    fetchPopular: `https://api.jikan.moe/v4/anime?order_by=popularity`
+    fetchPopular: `https://api.jikan.moe/v4/anime?order_by=popularity`,
+    fetchTopMovie: `https://api.jikan.moe/v4/anime?type=movie&order_by=popularity
+`
 }
 
 export default requests;
