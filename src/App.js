@@ -10,6 +10,7 @@ import TopRanking from './pages/TopRanking';
 import Recommendation from './pages/Recommendation';
 import Magazines from './pages/Magazines';
 import AnimeDetail from './pages/AnimeDetail';
+import './scrollbar.css'
 
 export default function App() {
   return (

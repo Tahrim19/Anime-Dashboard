@@ -1,0 +1,42 @@
+::-webkit-scrollbar {
+    width: 12px; 
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, 
+        rgba(255, 99, 132, 0.6), 
+        rgba(54, 162, 235, 0.6), 
+        rgba(255, 206, 86, 0.6), 
+        rgba(75, 192, 192, 0.6), 
+        rgba(153, 102, 255, 0.6), 
+        rgba(255, 159, 64, 0.6)
+    ); 
+    border-radius: 10px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, 
+        rgba(255, 159, 64, 0.6), 
+        rgba(54, 162, 235, 0.6), 
+        rgba(255, 206, 86, 0.6), 
+        rgba(75, 192, 192, 0.6), 
+        rgba(153, 102, 255, 0.6), 
+        rgba(255, 99, 132, 0.6)
+    ); 
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(153, 102, 255, 0.3);
+}
+
+/* scrollbar when focused */
+::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(180deg, 
+        rgba(75, 192, 192, 0.6), 
+        rgba(255, 99, 132, 0.6), 
+        rgba(54, 162, 235, 0.6), 
+        rgba(255, 206, 86, 0.6), 
+        rgba(153, 102, 255, 0.6), 
+        rgba(255, 159, 64, 0.6)
+    ); 
+}

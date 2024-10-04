@@ -5,7 +5,7 @@ import requests from '../Requests';
 
 export default function AnimeDetail() {
     const { mal_id } = useParams(); 
-    const navigate = useNavigate(); // Initialize the useNavigate hook
+    const navigate = useNavigate(); 
     const [animeDetail, setAnimeDetail] = useState(null);
     const [error, setError] = useState(null);
 
@@ -15,13 +15,13 @@ export default function AnimeDetail() {
             setAnimeDetail(response.data.data); 
         } catch (err) {
             console.log(err);
-            setError(err.message); // Handle error
+            setError(err.message); 
         }
     };
 
     useEffect(() => {
-        fetchData(); // Fetch anime details on component mount
-    }, [mal_id]);
+        fetchData();
+    }, []);
 
     // Render error or loading state
     if (error) return <div className="text-center text-red-500">{error}</div>;
