@@ -17,14 +17,13 @@ export default function TopRanked() {
       } catch (err) {
         console.log(err);
       }
-    }, 1000); // delay by 3 seconds
+    }, 1000); 
   };
 
   useEffect(() => {
     fetchData();
   }, []);
 
-  // Prepare the data for the PieChart
   const prepareChartData = () => {
     if (!topRanked || topRanked.length === 0) {
       return {
@@ -67,7 +66,7 @@ export default function TopRanked() {
         callbacks: {
           label: (tooltipItem) => {
             const index = tooltipItem.dataIndex;
-            return topRanked[index].title; // Show the manga title in the tooltip
+            return topRanked[index].title; 
           },
         },
       },
@@ -77,7 +76,6 @@ export default function TopRanked() {
   return (
     <div>
       <h3 className='text-center'>Top Ranked Anime</h3>
-      {/* Render the Pie chart only if data exists */}
       <div style={{ width: '450px', height: '450px'}}>
         {topRanked.length > 0 ? (
           <Pie data={prepareChartData()} options={options} width={450} height={450}/>

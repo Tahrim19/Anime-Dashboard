@@ -13,7 +13,7 @@ export default function TopMovies() {
   const fetchData = async () => {
     try {
       const response = await axios.get(requests.fetchTopMovie);
-      setMovies(response.data.data.slice(0, 10)); // Get top 10 movies
+      setMovies(response.data.data.slice(0, 10)); 
     } catch (err) {
       console.log(err);
     }
@@ -23,7 +23,6 @@ export default function TopMovies() {
     fetchData();
   }, []);
 
-  // Prepare the data for the Line chart
   const prepareChartData = () => {
     if (!movies || movies.length === 0) {
       return {
