@@ -6,6 +6,7 @@ export default function Sidebar() {
     const [open, setOpen] = useState(false);
     
     const menu = [
+        {title: "Home" , path:'/'},
         { title: "Anime" , path:'/anime'},
         { title: "Manga" , path:'/manga' },
         { title: "Genres" , path:'/genres'},

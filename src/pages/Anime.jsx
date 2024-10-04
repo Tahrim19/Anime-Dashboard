@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Anime = () => {
   const { animeList, currentPage, setCurrentPage, loading, error } = useContext(AnimeContext);
+  const navigate = useNavigate();
 
   if (loading) return <div className="text-center text-white">Loading Anime...</div>;
   if (error) return <div className="text-center text-red-500">Error: {error}</div>;
@@ -13,12 +14,10 @@ const Anime = () => {
   const totalAnimeCount = 200; // total anime count fetched
   const itemsPerPage = 25;
   const totalPages = Math.ceil(totalAnimeCount / itemsPerPage);
-  const navigate = useNavigate();
 
   const handleClick = (id) => {
-    navigate(`/animeDetail/${id}`)
-  }
-
+    navigate(`/animeDetail/${id}`); // Use the passed id here
+  };
 
   const renderPageNumbers = () => {
     const pageNumbers = [];
@@ -42,8 +41,8 @@ const Anime = () => {
         {animeList.map((item) => (
           <div 
             key={item.mal_id} 
-            className="anime-card flex border rounded-md shadow-md bg-white p-4" 
-            onClick={handleClick(id)}
+            className="anime-card flex border rounded-md shadow-md bg-white p-4 cursor-pointer" 
+            onClick={() => handleClick(item.mal_id)} // Use item.mal_id here
           >
             <img
               src={item.images.webp.image_url}
@@ -84,3 +83,4 @@ const Anime = () => {
 };
 
 export default Anime;
+

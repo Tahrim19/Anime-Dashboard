@@ -1,9 +1,11 @@
 const requests = {
     fetchAiring: 'https://api.jikan.moe/v4/anime?status=airing',
     fetchUpcoming: 'https://api.jikan.moe/v4/anime?status=upcoming',
+    
     // API for anime
     fetchAnime: `https://api.jikan.moe/v4/anime`,
-    // fetchAnimeDetail:`https://api.jikan.moe/v4/anime/${id}`
+    fetchAnimeDetail: (mal_id) => `https://api.jikan.moe/v4/anime/${mal_id}`,
+
     // API for charts
     fetchTrending: 'https://api.jikan.moe/v4/top/anime',
     fetchManga:`https://api.jikan.moe/v4/top/manga`,

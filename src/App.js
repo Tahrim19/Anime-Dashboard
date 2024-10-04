@@ -27,7 +27,7 @@ export default function App() {
               <Route path="/topranking" element={<TopRanking/>} />
               <Route path="/recommendation" element={<Recommendation/>} />
               <Route path="/magazines" element={<Magazines/>} />
-              <Route path='/animeDetail' element={<AnimeDetail/>}/>
+              <Route path='/animeDetail/:mal_id' element={<AnimeDetail/>}/>
             </Routes>
           </div>
         </div>
