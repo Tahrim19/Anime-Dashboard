@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { IoMenu } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
     const [open, setOpen] = useState(false);
     
     const menu = [
-        { title: "Anime" },
-        { title: "Manga" },
-        { title: "Genres" },
-        { title: "Top Ranking" },
-        { title: "Recommendations" },
-        { title: "Magazines" },
+        { title: "Anime" , path:'/anime'},
+        { title: "Manga" , path:'/manga' },
+        { title: "Genres" , path:'/genres'},
+        { title: "Top Ranking" , path:'/topranking'},
+        { title: "Recommendations" , path:'/recommendation'},
+        { title: "Magazines" , path:'/magazines'},
     ];
 
     const handleClick = () => {
@@ -26,7 +27,8 @@ export default function Sidebar() {
                 <ul className={`${!open && 'hidden'} mt-4 space-y-4 `}>
                     {menu.map((menus, i) => (
                         <li key={i} className='px-6 py-2 cursor-pointer hover:bg-purple-200 text-purple-700 rounded-md'>
-                            {menus.title}
+                            <Link to={menus.path} className="w-full h-full block">{menus.title}</Link>
+
                         </li>
                     ))}
                 </ul>

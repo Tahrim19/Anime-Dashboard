@@ -1,12 +1,20 @@
 import React from 'react';
 import { IoPerson } from "react-icons/io5";
+import {useNavigate} from 'react-router-dom'
 
 export default function Header() {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/')
+  }
+
   return (
     <div className='header bg-purple-100 p-2 h-13'>
       <div className='header-content flex items-center justify-between'>
         
-        <h1 className='anime font-mono font-bold text-lg tracking-widest text-purple-700 cursor-pointer ml-4'>
+        <h1 className='anime font-mono font-bold text-lg tracking-widest text-purple-700 cursor-pointer ml-4'
+          onClick={handleClick}
+        >
           AnimeHub
         </h1>
 
