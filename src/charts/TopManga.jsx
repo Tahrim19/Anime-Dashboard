@@ -7,13 +7,13 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function TopManga() {
-  const [popular, setPopular] = useState([]);
+  const [manga, setManga] = useState([]);
 
   const fetchData = () => {
     setTimeout(async () => {
       try {
         const response = await axios.get(requests.fetchManga);
-        setPopular(response.data.data.slice(0, 10)); // Get top 10 manga
+        setManga(response.data.data.slice(0, 10)); // Get top 10 manga
       } catch (err) {
         console.log(err);
       }
@@ -26,7 +26,7 @@ export default function TopManga() {
 
   // Prepare the data for the PieChart
   const prepareChartData = () => {
-    if (!popular || popular.length === 0) {
+    if (!manga || manga.length === 0) {
       return {
         labels: [], // No labels if data is empty
         datasets: [],
@@ -34,11 +34,11 @@ export default function TopManga() {
     }
 
     return {
-      labels: popular.map((manga) => manga.title), // Manga titles as labels
+      labels: manga.map((manga) => manga.title), // Manga titles as labels
       datasets: [
         {
-          label: 'Popular Manga Scores',
-          data: popular.map((manga) => manga.score || 0), // Manga scores as data points
+          label: 'manga Manga Scores',
+          data: manga.map((manga) => manga.score || 0), // Manga scores as data points
           backgroundColor: [
             'rgba(255, 99, 132, 0.6)',
             'rgba(54, 162, 235, 0.6)',
@@ -67,7 +67,7 @@ export default function TopManga() {
         callbacks: {
           label: (tooltipItem) => {
             const index = tooltipItem.dataIndex;
-            return popular[index].title; // Show the manga title in the tooltip
+            return manga[index].title; // Show the manga title in the tooltip
           },
         },
       },
@@ -78,7 +78,7 @@ export default function TopManga() {
     <div>
       <h3 className='text-center'>Top Ranked Manga</h3> {/* Updated Chart Title */}
       <div style={{ width: '450px', height: '450px' }}> {/* Adjusted size for better layout */}
-        {popular.length > 0 ? (
+        {manga.length > 0 ? (
           <Pie data={prepareChartData()} options={options} width={450} height={450} />
         ) : (
           <p>Loading data...</p>
