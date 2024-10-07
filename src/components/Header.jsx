@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IoPerson } from "react-icons/io5";
-import {useNavigate} from 'react-router-dom'
+import {createSearchParams, useNavigate} from 'react-router-dom'
 
 export default function Header() {
+  const [searchQuery , setSearchQuery] = useState('');
   const navigate = useNavigate();
   const handleClick = () => {
     navigate('/')
+  }
+  const handleSearch = (e) => {
+    if(e.key === 'Enter'){
+      if(searchQuery.trim()){
+        navigate({
+          pathname: '/search',
+          search: createSearchParams({
+            query: searchQuery
+          }).toString(),
+        })
+      }
+      else{
+        navigate('/anime')
+      }
+    }
   }
 
   return (
@@ -22,8 +38,11 @@ export default function Header() {
           <span>
             <input
               type='text'
-              placeholder='Search...'
+              placeholder='Search anime...'
               className='h-8 pl-2 w-80 border border-purple-300 rounded-md bg-white text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-300 transition-all'
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleSearch} // Trigger search on Enter key
             />
           </span>
           <span className='cursor-pointer'>

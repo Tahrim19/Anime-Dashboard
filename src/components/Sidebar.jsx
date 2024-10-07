@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IoMenu } from "react-icons/io5";
 import { Link } from 'react-router-dom';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 export default function Sidebar() {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useLocalStorage('open' , false);
     
     const menu = [
         {title: "Home" , path:'/'},

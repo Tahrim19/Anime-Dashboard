@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LinearScale, PointElement, LineElement, Tooltip, Legend } from 'chart.js';
 import requests from '../Requests';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
 export default function TopMovies() {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useLocalStorage('movies', []);
 
   // Fetch top movies
   const fetchData = async () => {

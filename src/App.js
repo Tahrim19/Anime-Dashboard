@@ -11,6 +11,7 @@ import Recommendation from './pages/Recommendation';
 import Magazines from './pages/Magazines';
 import AnimeDetail from './pages/AnimeDetail';
 import './scrollbar.css'
+import Search from './pages/Search';
 
 export default function App() {
   return (
@@ -29,6 +30,8 @@ export default function App() {
               <Route path="/recommendation" element={<Recommendation/>} />
               <Route path="/magazines" element={<Magazines/>} />
               <Route path='/animeDetail/:mal_id' element={<AnimeDetail/>}/>
+              <Route path="/search" element={<Search/>} />
+
             </Routes>
           </div>
         </div>

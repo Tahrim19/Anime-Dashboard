@@ -57,7 +57,14 @@ export default function AnimeDetail() {
                 <p><strong>Episodes:</strong> {animeDetail.episodes}</p>
                 <p><strong>Aired:</strong> {animeDetail.aired.string}</p>
                 <p><strong>Rating:</strong> {animeDetail.score}</p>
-                <p><strong>Genres:</strong> 
+                <p><strong>Trailer: </strong><a
+                        href={animeDetail.trailer.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="text-blue-500 hover:underline"
+                    >
+                    Click here to watch!</a></p>
+                <p><strong>Genres: </strong> 
                     {animeDetail.genres.map((genre, index) => (
                         <span key={genre.mal_id}>
                             {genre.name}

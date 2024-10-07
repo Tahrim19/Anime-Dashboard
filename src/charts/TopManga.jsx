@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import requests from '../Requests';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function TopManga() {
-  const [manga, setManga] = useState([]);
+  const [manga, setManga] = useLocalStorage('manga',[]);
 
   const fetchData = () => {
     setTimeout(async () => {
       try {
-        const response = await axios.get(requests.fetchManga);
+        const response = await axios.get(requests.fetchTopManga);
         setManga(response.data.data.slice(0, 10)); // Get top 10 manga
       } catch (err) {
         console.log(err);

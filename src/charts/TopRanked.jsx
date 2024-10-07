@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import requests from '../Requests';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function TopRanked() {
-  const [topRanked, setTopRanked] = useState([]);
+  const [topRanked, setTopRanked] = useLocalStorage('topRanked',[]);
 
   const fetchData = () => {
     setTimeout(async () => {

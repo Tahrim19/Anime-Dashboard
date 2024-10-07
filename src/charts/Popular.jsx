@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import requests from '../Requests';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip, Legend } from 'chart.js';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 export default function Popular() {
-  const [popular, setpopular] = useState([]);
+  const [popular, setpopular] = useLocalStorage('popular' , []);
 
   const fetchData = () => {
     setTimeout(async () => {
