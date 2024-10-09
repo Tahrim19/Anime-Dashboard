@@ -9,9 +9,10 @@ import Genres from './pages/Genre';
 import TopRanking from './pages/TopRanking';
 import Recommendation from './pages/Recommendation';
 import Magazines from './pages/Magazines';
-import AnimeDetail from './pages/AnimeDetail';
+import AnimeDetail from './details/AnimeDetail';
 import './scrollbar.css'
 import Search from './pages/Search';
+import MangaDetail from './details/MangaDetail';
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
               <Route path="/recommendation" element={<Recommendation/>} />
               <Route path="/magazines" element={<Magazines/>} />
               <Route path='/animeDetail/:mal_id' element={<AnimeDetail/>}/>
+              <Route path='/MangaDetail/:mal_id' element={<MangaDetail/>}/>
               <Route path="/search" element={<Search/>} />
 
             </Routes>
