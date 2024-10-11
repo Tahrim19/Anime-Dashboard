@@ -3,8 +3,8 @@ const requests = {
     fetchUpcoming: 'https://api.jikan.moe/v4/anime?status=upcoming',
     
     // API for anime
-    fetchAnime: (page) => `https://api.jikan.moe/v4/anime?page=${page}`,
-    fetchManga: (page) => `https://api.jikan.moe/v4/manga?page=${page}`,
+    fetchAnime: `https://api.jikan.moe/v4/anime`,
+    fetchManga: `https://api.jikan.moe/v4/manga`,
     fetchAnimeDetail: (mal_id) => `https://api.jikan.moe/v4/anime/${mal_id}`,
     fetchMangaDetail: (mal_id) => `https://api.jikan.moe/v4/manga/${mal_id}`,
     fetchGenre: `https://api.jikan.moe/v4/genres/anime`,

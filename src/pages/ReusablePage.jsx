@@ -2,34 +2,22 @@ import React, { useContext } from 'react';
 import { AnimeContext } from '../contexts/AnimeContext';
 import { GrFormPrevious } from "react-icons/gr";
 import { GrFormNext } from "react-icons/gr";
+import { useNavigate } from 'react-router-dom';
 
-const ReusablePage = ({ handleClick , onPageChange}) => {
-    const { list, currentPage, setCurrentPage, loading, error } = useContext(AnimeContext);
+const ReusablePage = ({ handleClick, contentType }) => { 
+    const { list, currentPage, setCurrentPage, loading, error, fetchAnimeList } = useContext(AnimeContext);
+    const navigate = useNavigate(); 
 
     console.log('Loading:', loading);
     console.log('Error:', error);
-    console.log('Manga List:', list);
+    console.log('Anime List:', list);
 
-    if (loading) return <div className="text-center text-white">Loading Manga...</div>;
+    if (loading) return <div className="text-center text-white">Loading {contentType}...</div>;
     if (error) return <div className="text-center text-red-500">Error: {error}</div>;
 
-    const totalAnimeCount = 500; // Update based on the actual count from API
+    const totalCount = 500;
     const itemsPerPage = 25;
-    const totalPages = Math.ceil(totalAnimeCount / itemsPerPage);
-
-    const handlePrevious = () => {
-        if (currentPage > 1) {
-            onPageChange(currentPage - 1);
-            setCurrentPage(currentPage - 1); 
-        }
-    };
-
-    const handleNext = () => {
-        if (currentPage < totalPages) {
-            onPageChange(currentPage + 1);
-            setCurrentPage(currentPage + 1); 
-        }
-    };
+    const totalPages = Math.ceil(totalCount / itemsPerPage); 
 
     const renderPageNumbers = () => {
         const pageNumbers = [];
@@ -38,8 +26,9 @@ const ReusablePage = ({ handleClick , onPageChange}) => {
                 <button
                     key={i}
                     onClick={() => {
-                        onPageChange(i);
-                        setCurrentPage(i); 
+                        setCurrentPage(i);
+                        fetchAnimeList(i); 
+                        navigate(`/${contentType}?page=${i}`); // update url dynamically based on content type
                     }}
                     className={`px-2 py-1 rounded ${currentPage === i ? 'bg-purple-300' : 'bg-purple-200'} hover:bg-purple-300 text-purple-900 font-medium`}
                 >
@@ -78,7 +67,12 @@ const ReusablePage = ({ handleClick , onPageChange}) => {
             <div className="pagination-controls mt-6 flex justify-center items-center space-x-4 mb-6">
                 <button
                     className="px-4 py-2 rounded bg-purple-200 hover:bg-purple-300"
-                    onClick={handlePrevious}
+                    onClick={() => {
+                        const newPage = Math.max(currentPage - 1, 1);
+                        setCurrentPage(newPage);
+                        fetchAnimeList(newPage); 
+                        navigate(`/${contentType}?page=${newPage}`); 
+                    }}
                     disabled={currentPage === 1}
                 >
                     <GrFormPrevious />
@@ -86,7 +80,12 @@ const ReusablePage = ({ handleClick , onPageChange}) => {
                 {renderPageNumbers()}
                 <button
                     className="px-4 py-2 bg-purple-200 hover:bg-purple-300 rounded"
-                    onClick={handleNext}
+                    onClick={() => {
+                        const newPage = Math.min(currentPage + 1, totalPages);
+                        setCurrentPage(newPage);
+                        fetchAnimeList(newPage); 
+                        navigate(`/${contentType}?page=${newPage}`); 
+                    }}
                     disabled={currentPage === totalPages}
                 >
                     <GrFormNext />
@@ -96,6 +95,4 @@ const ReusablePage = ({ handleClick , onPageChange}) => {
     );
 };
 
-    export default ReusablePage;
-
-
+export default ReusablePage;
