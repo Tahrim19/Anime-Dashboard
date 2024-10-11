@@ -7,7 +7,8 @@ const requests = {
     fetchManga: `https://api.jikan.moe/v4/manga`,
     fetchAnimeDetail: (mal_id) => `https://api.jikan.moe/v4/anime/${mal_id}`,
     fetchMangaDetail: (mal_id) => `https://api.jikan.moe/v4/manga/${mal_id}`,
-    fetchGenre: `https://api.jikan.moe/v4/genres/anime`,
+    fetchAnimeGenre: `https://api.jikan.moe/v4/genres/anime`,
+    fetchMangaGenre: `https://api.jikan.moe/v4/genres/manga`,
     fetchRecommendations: `https://api.jikan.moe/v4/recommendations/anime`,
 
     // API for charts
