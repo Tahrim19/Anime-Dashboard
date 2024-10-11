@@ -1,77 +1,36 @@
-// import { createContext, useEffect, useState } from 'react'
-// import requests from '../Requests';
+import axios from 'axios';
+import { createContext, useEffect, useState } from 'react';
 
-// // create context
-// export const AnimeContext = createContext();
-
-// // create context provider
-// export const AnimeProvider = ({ children }) => {
-//     const [animeList ,setAnimeList] = useState([]);
-//     const [currentPage , setCurrentPage] = useState(1);
-//     const [loading , setLoading] = useState(true);
-//     const [error , setError] = useState(null);
-
-//     const fetchAnimeList = async (page) => {
-//         setLoading(true);
-//         try{
-//             const response = await fetch(`${requests.fetchAnime}?page=${page}`);
-//             const data = await response.json();
-//             setAnimeList(data.data);
-//         }
-//         catch(err){
-//             setError(err);
-//         }
-//         finally{
-//             setLoading(false);
-//         }
-//     }
-//     useEffect(()=>{
-//         fetchAnimeList(currentPage);
-//     },[currentPage]);
-
-//     return(
-//         <AnimeContext.Provider value ={{animeList, currentPage, setCurrentPage, loading, error}}>
-//             {children}
-//         </AnimeContext.Provider>
-//     )
-// }
-
-
-
-import { createContext, useEffect, useState } from 'react'
-// import requests from '../Requests';
-
-// create context
 export const AnimeContext = createContext();
 
-// create context provider
-export const AnimeProvider = ({ children , url }) => {
-    const [list ,setlist] = useState([]);
-    const [currentPage , setCurrentPage] = useState(1);
-    const [loading , setLoading] = useState(true);
-    const [error , setError] = useState(null);
+export const AnimeProvider = ({ children, url }) => {
+    const [list, setlist] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalItems, setTotalItems] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const fetchAnimeList = async (page) => {
+    const fetchAnimeList = async () => {
         setLoading(true);
-        try{
-            const response = await fetch(`${url}?page=${page}`);
-            const data = await response.json();
+        try {
+            const response = await axios.get(`${url}`); 
+            const data = response.data; 
             setlist(data.data);
-        }
-        catch(err){
+            setTotalItems(data.pagination?.items?.total || 0); // Update totalItems from response
+        } catch (err) {
             setError(err);
-        }
-        finally{
+        } finally {
             setLoading(false);
         }
-    }
-    useEffect(()=>{
-        fetchAnimeList(currentPage);
-    },[currentPage]);
+    };
 
-    return(
-        <AnimeContext.Provider value ={{list, currentPage, setCurrentPage, loading, error}}>
+    useEffect(() => {
+        fetchAnimeList(currentPage); 
+    }, [url]); 
+
+    return (
+        <AnimeContext.Provider value={{ list, currentPage, setCurrentPage, totalItems, loading, error }}>
             {children}
         </AnimeContext.Provider>
-    )
-}
+    );
+};
