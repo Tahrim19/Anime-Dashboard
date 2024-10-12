@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { createContext, useEffect, useState } from 'react';
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 export const AnimeContext = createContext();
 
 export const AnimeProvider = ({ children, url }) => {
     const [list, setList] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useLocalStorage('currentPage',1);
     const [totalItems, setTotalItems] = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
