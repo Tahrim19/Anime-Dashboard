@@ -11,6 +11,7 @@ const requests = {
     fetchMangaGenre: `https://api.jikan.moe/v4/genres/manga`,
     fetchAnimeRecommendations: `https://api.jikan.moe/v4/recommendations/anime`,
     fetchMangaRecommendations: `https://api.jikan.moe/v4/recommendations/manga`,
+    fetchMagazines: `https://api.jikan.moe/v4/magazines`,
 
     // API for charts
     fetchTrending: 'https://api.jikan.moe/v4/top/anime',
