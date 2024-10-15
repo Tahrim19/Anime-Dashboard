@@ -1,6 +1,6 @@
 import React from 'react';
 import './scrollbar.css';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Content from './components/Content';
@@ -15,7 +15,7 @@ import Search from './pages/Search';
 import MangaDetail from './details/MangaDetail';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import AuthWrapper from './AuthWrapper'; 
+import AuthWrapper from './AuthWrapper'
 
 export default function App() {
     return (
@@ -26,6 +26,7 @@ export default function App() {
                     <Sidebar />
                     <div className="content flex-grow">
                         <Routes>
+                            {/* Apply AuthWrapper to routes that require authentication */}
                             <Route path="/" element={<AuthWrapper><Content /></AuthWrapper>} />
                             <Route path="/anime" element={<AuthWrapper><Anime /></AuthWrapper>} />
                             <Route path="/manga" element={<AuthWrapper><Manga /></AuthWrapper>} />
